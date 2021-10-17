@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "eslint-plugin-react": "^7.26.1",
+    "styled-components": "^5.3.1"
+  }
+}
