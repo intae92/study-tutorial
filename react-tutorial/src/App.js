@@ -4,14 +4,17 @@ import Hello from "./Hello";
 import HelloButton from "./HelloButton";
 import { HelloProvider } from "./HelloContext";
 
+import ApiCall from "./ApiCall/ApiCall";
+
 const App = () => {
   return (
-    <>
-      <HelloProvider>
-        <Hello />
-        <HelloButton />
-      </HelloProvider>
-    </>
+    <ApiCall />
+    // <>
+    //   <HelloProvider>
+    //     <Hello />
+    //     <HelloButton />
+    //   </HelloProvider>
+    // </>
   );
 };
 
