@@ -16,7 +16,7 @@ rl.on("line", function (line) {
   //   input.push(parseInt(line));
   // rl.close();
 }).on("close", function () {
-  console.log(solution(input[0], input.slice(1)));
+  console.log(solution1(input[0], input.slice(1)));
   process.exit();
 });
 
@@ -52,6 +52,39 @@ const solution = (option, list) => {
     }
   };
 
+  for (let i = 1; i <= N; i++) {
+    if (!visited[i]) {
+      dfs(i);
+      count++;
+    }
+  }
+
+  return count;
+};
+
+const solution1 = (option, list) => {
+  const [N, M] = option;
+  const visited = Array(N + 1).fill(false);
+  const edge = Array(N + 1)
+    .fill(null)
+    .map((x) => []);
+
+  for (let i of list) {
+    const [from, to] = i;
+    edge[from].push(to);
+    edge[to].push(from);
+  }
+
+  const dfs = (start) => {
+    visited[start] = true;
+    for (let next of edge[start]) {
+      if (!visited[next]) {
+        dfs(next);
+      }
+    }
+  };
+
+  let count = 0;
   for (let i = 1; i <= N; i++) {
     if (!visited[i]) {
       dfs(i);

@@ -16,7 +16,7 @@ rl.on("line", function (line) {
   //   input.push(parseInt(line));
   // rl.close();
 }).on("close", function () {
-  solution(input[0], input.slice(1));
+  solution1(input[0], input.slice(1));
   //   console.log(solution(input[0], input.slice(1)));
   process.exit();
 });
@@ -27,6 +27,53 @@ rl.on("line", function (line) {
 // 1 4
 // 2 4
 // 3 4
+
+const solution1 = (option, list) => {
+  const [N, M, V] = option;
+  const edge = Array(N + 1)
+    .fill(undefined)
+    .map((x) => []);
+
+  for (let i of list) {
+    const [from, to] = i;
+    edge[from].push(to);
+    edge[to].push(from);
+  }
+
+  const dfs = (start, arr) => {
+    const stack = [start];
+    const visited = [];
+
+    while (stack.length) {
+      const cur = stack.pop();
+      if (!visited.includes(cur)) {
+        visited.push(cur);
+        stack.push(
+          ...arr[cur].filter((x) => !visited.includes(x)).sort((a, b) => b - a)
+        );
+      }
+    }
+    return visited.join(" ").trim();
+  };
+  const bfs = (start, arr) => {
+    const stack = [start];
+    const visited = [];
+
+    while (stack.length) {
+      const cur = stack.shift();
+      if (!visited.includes(cur)) {
+        visited.push(cur);
+        stack.push(
+          ...arr[cur].filter((x) => !visited.includes(x)).sort((a, b) => a - b)
+        );
+      }
+    }
+    return visited.join(" ").trim();
+  };
+
+  console.log(dfs(V, edge));
+  console.log(bfs(V, edge));
+};
 
 const solution = (option, list) => {
   let result;
