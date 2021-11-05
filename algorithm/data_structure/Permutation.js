@@ -17,26 +17,26 @@
 //   return results; // 결과 담긴 results return
 // };
 
-const example = [1, 2, 3, 4, 5, 6, 7];
-// const result = getCombinations1(example, 3);
+// const example = [1, 2, 3, 4, 5, 6, 7];
+// const result = getCombinations(example, 3);
 // console.log(result);
 
-const getPermutations1 = (arr, selectNumber) => {
-  const results = [];
-  if (selectNumber === 1) return arr.map((v) => [v]);
+// const getPermutations1 = (arr, selectNumber) => {
+//   const results = [];
+//   if (selectNumber === 1) return arr.map((v) => [v]);
 
-  arr.forEach((fixed, index, origin) => {
-    // const rest = [...origin.slice(0, index), ...origin.slice(index + 1)];
-    const rest = origin;
-    const permutation = getPermutations1(rest, selectNumber - 1);
-    const attached = permutation.map((v) => [fixed, ...v]);
-    results.push(...attached);
-  });
-  return results;
-};
+//   arr.forEach((fixed, index, origin) => {
+//     // const rest = [...origin.slice(0, index), ...origin.slice(index + 1)];
+//     const rest = origin;
+//     const permutation = getPermutations1(rest, selectNumber - 1);
+//     const attached = permutation.map((v) => [fixed, ...v]);
+//     results.push(...attached);
+//   });
+//   return results;
+// };
 
-const result1 = getPermutations1(example, 3);
-console.log(result1);
+// const result1 = getPermutations1(example, 3);
+// console.log(result1);
 
 // const getPermutations = (arr, selectNumber) => {
 //   const results = [];
@@ -52,3 +52,19 @@ console.log(result1);
 
 //   return results;
 // };
+
+const example = [1, 2, 3, 4];
+const obj = [];
+const getCombinations = (arr, selectNumber) => {
+  // console.log(arr);
+  obj.push(arr);
+
+  for (let i = selectNumber; i < arr.length; i++) {
+    let combiArr = [...arr];
+    combiArr[i] = "-";
+    getCombinations(combiArr, i + 1);
+  }
+};
+
+getCombinations(example, 0);
+console.log(obj);
