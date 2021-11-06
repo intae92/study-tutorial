@@ -31,6 +31,7 @@ function solution(orders, course) {
         maxCount = Math.max(maxCount, menuObj[p]);
       }
     }
+
     // console.log(menuObj);
 
     const result = new Set(menuList.filter((v) => menuObj[v] === maxCount));

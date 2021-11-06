@@ -1,60 +1,82 @@
-// https://programmers.co.kr/learn/courses/30/lessons/12978
-// 다익스트라
+// // https://programmers.co.kr/learn/courses/30/lessons/12978
+// // 다익스트라
 
+// // const solution = (N, road, K) => {
+// //   const dist = Array(N + 1).fill(Infinity);
+// //   const adj = Array.from({ length: N + 1 }, () => []);
+
+// //   road.forEach(([a, b, c]) => {
+// //     adj[a].push({ to: b, time: c });
+// //     adj[b].push({ to: a, time: c });
+// //   });
+// //   //   console.log(adj);
+// //   const pq = [{ to: 1, time: 0 }];
+// //   dist[1] = 0;
+// //   while (pq.length) {
+// //     let { to, time } = pq.pop();
+// //     adj[to].forEach((next) => {
+// //       if (dist[next.to] > dist[to] + next.time) {
+// //         dist[next.to] = dist[to] + next.time;
+// //         pq.push(next);
+// //       }
+// //     });
+// //   }
+// //   return dist.filter((x) => x <= K).length;
+// // };
 // const solution = (N, road, K) => {
-//   const dist = Array(N + 1).fill(Infinity);
-//   const adj = Array.from({ length: N + 1 }, () => []);
+//   const queue = [];
+//   const adj = Array.from(Array(N + 1), () => []);
+//   const dist = [0, 0];
 
-//   road.forEach(([a, b, c]) => {
-//     adj[a].push({ to: b, time: c });
-//     adj[b].push({ to: a, time: c });
+//   for (let i = 0; i < N - 1; ++i) dist.push(Number.MAX_VALUE);
+
+//   road.map((info) => {
+//     const [a, b, c] = info;
+//     adj[a].push({ to: b, weight: c });
+//     adj[b].push({ to: a, weight: c });
 //   });
-//   //   console.log(adj);
-//   const pq = [{ to: 1, time: 0 }];
-//   dist[1] = 0;
-//   while (pq.length) {
-//     let { to, time } = pq.pop();
-//     adj[to].forEach((next) => {
-//       if (dist[next.to] > dist[to] + next.time) {
-//         dist[next.to] = dist[to] + next.time;
-//         pq.push(next);
-//       }
-//     });
-//   }
-//   return dist.filter((x) => x <= K).length;
+//   queue.push({
+//     to: 1,
+//     weight: 0,
+//   });
+
+//   (function () {
+//     while (queue.length) {
+//       let edge = queue.shift();
+//       adj[edge.to].map((next) => {
+//         if (dist[next.to] > dist[edge.to] + next.weight) {
+//           dist[next.to] = dist[edge.to] + next.weight;
+//           queue.push(next);
+//         }
+//       });
+//     }
+//   })();
+
+//   //   console.log(dist);
+//   return dist.slice(1).filter((x) => x <= K).length;
 // };
-const solution = (N, road, K) => {
-  const queue = [];
-  const adj = Array.from(Array(N + 1), () => []);
-  const dist = [0, 0];
 
-  for (let i = 0; i < N - 1; ++i) dist.push(Number.MAX_VALUE);
+// const N = 5;
+// const road = [
+//   [1, 2, 1],
+//   [2, 3, 3],
+//   [5, 2, 2],
+//   [1, 4, 2],
+//   [5, 3, 1],
+//   [5, 4, 2],
+// ];
+// const K = 3;
 
-  road.map((info) => {
-    const [a, b, c] = info;
-    adj[a].push({ to: b, weight: c });
-    adj[b].push({ to: a, weight: c });
-  });
-  queue.push({
-    to: 1,
-    weight: 0,
-  });
+// console.log(solution(N, road, K));
 
-  (function () {
-    while (queue.length) {
-      let edge = queue.shift();
-      adj[edge.to].map((next) => {
-        if (dist[next.to] > dist[edge.to] + next.weight) {
-          dist[next.to] = dist[edge.to] + next.weight;
-          queue.push(next);
-        }
-      });
-    }
-  })();
+function solution(N, road, K) {
+  var answer = 0;
 
-  //   console.log(dist);
-  return dist.slice(1).filter((x) => x <= K).length;
-};
+  // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+  console.log("Hello Javascript");
+
+  return answer;
+}
 
 const N = 5;
 const road = [
@@ -67,4 +89,17 @@ const road = [
 ];
 const K = 3;
 
-console.log(solution(N, road, K));
+// const N1 = 6;
+// const road1 = [
+//   [1, 2, 1],
+//   [1, 3, 2],
+//   [2, 3, 2],
+//   [3, 4, 3],
+//   [3, 5, 2],
+//   [3, 5, 3],
+//   [5, 6, 1],
+// ];
+// const K1 = 4;
+
+const a = solution(N, road, K);
+console.log(a);

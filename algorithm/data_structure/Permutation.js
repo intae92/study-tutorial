@@ -53,18 +53,35 @@
 //   return results;
 // };
 
-const example = [1, 2, 3, 4];
-const obj = [];
-const getCombinations = (arr, selectNumber) => {
-  // console.log(arr);
-  obj.push(arr);
+// const example = [1, 2, 3, 4];
+// const obj = [];
+// const getCombinations = (arr, selectNumber) => {
+//   // console.log(arr);
+//   obj.push(arr);
 
-  for (let i = selectNumber; i < arr.length; i++) {
-    let combiArr = [...arr];
-    combiArr[i] = "-";
-    getCombinations(combiArr, i + 1);
-  }
-};
+//   for (let i = selectNumber; i < arr.length; i++) {
+//     let combiArr = [...arr];
+//     combiArr[i] = "-";
+//     getCombinations(combiArr, i + 1);
+//   }
+// };
 
-getCombinations(example, 0);
-console.log(obj);
+// getCombinations(example, 0);
+// console.log(obj);
+
+// const example = [1, 2, 3, 4, 5, 6, 7];
+
+// const getPermutations = (arr, selectNumber) => {
+//   const result = [];
+//   if (selectNumber === 1) return arr.map((v) => [v]);
+
+//   arr.forEach((fixed, index, origin) => {
+//     const rest = [...origin.slice(0, index), ...origin.slice(index + 1)];
+//     const permutations = getPermutations(rest, selectNumber - 1);
+//     const attached = permutations.map((v) => [fixed, ...v]);
+//     result.push(...attached);
+//   });
+//   return result;
+// };
+
+// console.log(getPermutations(example, 3));

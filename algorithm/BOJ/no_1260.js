@@ -28,6 +28,44 @@ rl.on("line", function (line) {
 // 2 4
 // 3 4
 
+// const solution2 = (option, list) => {
+//   const [N, M, V] = option;
+//   const graph = Array(N + 1)
+//     .fill(null)
+//     .map((v) => []);
+
+//   for (let l of list) {
+//     const [from, to] = l;
+//     graph[from].push(to);
+//     graph[to].push(from);
+
+//     // graph[from].sort((a, b) => b - a);
+//     // graph[to].sort((a, b) => b - a);
+//   }
+
+//   console.log(graph);
+//   const dfs = (start) => {
+//     const visited = [];
+//     const stack = [start];
+
+//     while (stack.length) {
+//       const cur = stack.shift();
+//       if (!visited.includes(cur)) {
+//         visited.push(cur);
+
+//         stack.push(
+//           ...graph[cur]
+//             .filter((v) => !visited.includes(v))
+//             .sort((a, b) => a - b)
+//         );
+//       }
+//     }
+//     return visited;
+//   };
+//   const a = dfs(V);
+//   console.log(a);
+// };
+
 const solution1 = (option, list) => {
   const [N, M, V] = option;
   const edge = Array(N + 1)
